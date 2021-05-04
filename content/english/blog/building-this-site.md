@@ -44,7 +44,7 @@ In the end though, I think it came down to my general distaste for the JavaScrip
 
 DISCLAIMER: I am not a frontend developer.  I generally dispise all frontend ecosystems.  NodeJS and npm are terrible in particular.
 
-# The Process
+# The Site
 
 I'll skip over the AWS portion for now (and leave that for a future post).  Here, I'm going to detail the steps I took to get this site going in Hugo locally.  Most of this would be covered by the [Hugo Quickstart](https://gohugo.io/getting-started/quick-start/).
 
@@ -79,6 +79,50 @@ $ hugo server -D
 ```
 
 At this point, a local Hugo server should startup, generate all your pages, and tell you how to get to it at [http://localhost:1313/](http://localhost:1313/).  The site will stay up and running and hot reload as you save files in the project directory.
+
+# AWS Setup
+
+The goal here is cheap and quick.  I had originally thought about managing the site myself with an Instance or Lightsail again.  But I had heard about AWS Amplify a while back and wanted to give it a try.  Amplify is basically all about static site hosting.  Behind the scenes it is probably just S3 + CloudFront.  That and a little Route 53 is all you need to host a site.
+
+However, Amplify adds to that with predesigned 'build packs' for different source types and site rendering engines.  And of course, a Hugo site hosted in GitHub is one of them.  So this should be super easy.
+
+## GitHub
+
+This one is super simple.  Create a new repository and push your code.  Done!
+
+## Amplify
+
+Also pretty straight forward.  Log into the Console and navigate to Amplify.  
+
+Click the 'Get Started' button.  You'll be presented with the choice of 'Frontend + Backend' or 'Just Frontend'.  Now in my case, I'm just hosting a frontend.  So I chose that as the option.  
+
+Next, I chose GitHub as my source location.   It then walked me through a standard OAuth based process so that I could grant AWS access to the respository.  Honestly, it wanted a lot more permissions than I thought it would need.  But I'm not going to fight it.  The entire GitHub organization is just for this site.  Once the OAuth is setup, Amplify will present you with an option to select the repository.
+
+Once you select your repository, AWS must inspect the code base.  In my case, it came up with a 'build plan' for Hugo.  I just accepted it.
+
+And off to the races!  The site started to build and was fully deployed to an Amplify generated domain name in less than two minutes!
+
+## Site Verification
+
+At this point, I navigated to the site link that Amplify gave me.  Immediately I noticed that half the site didn't render correctly.  Some quick inspections of the browser console and I noticed that half the URLs were to a placeholder 'baseURL' that I had put in the Hugo config.toml file.  I updated that parameter to the Amplify URL and pushed again.  In a few moments, the page was updated and working alright.
+
+Which leads us to the next part.
+
+## Domain Registration + DNS Setup
+
+Head over to Route53.  Register a domain name.  Wait.  The AWS Invoice will show up in your email before the registration is complete.  This took about 20 minutes.  When you are used to everything in life being so quick, the process of getting a new domain seems to take forever (or about 20 minutes).  I should have made the domain registrations one of my first steps.
+
+This is the first time I've registered a new domain in about four years.  I forgot how long it can take.
+
+Once the registration completes go back to the Route53 dashboard and create a new Hosted Zone for your new domain name.  This should take only a few seconds.  Don't worry about adding any records.
+
+Head back over to the Amplify console.  In my case, I had a checklist of things in Amplify.  Step two (after the site roll out) was to setup the domain name and SSL.  I just clicked through and chose the domain that I had just added.  This kicks off another process by which AWS will generate the Route53 records in your new Hosted Zone.
+
+You can then wait again.
+
+I think this time you are waiting for global DNS propagation of a new domain name.  You might want to just pause here and go do something else.  Or come back the next day.
+
+I setup a short loop in my terminal to do an nslookup on my new domain name and put it in a transparent window on a side monitor so I could keep an eye out for its completion.
 
 # Conclusion
 
