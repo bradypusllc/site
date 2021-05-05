@@ -110,19 +110,19 @@ Which leads us to the next part.
 
 ## Domain Registration + DNS Setup
 
-Head over to Route53.  Register a domain name.  Wait.  The AWS Invoice will show up in your email before the registration is complete.  This took about 20 minutes.  When you are used to everything in life being so quick, the process of getting a new domain seems to take forever (or about 20 minutes).  I should have made the domain registrations one of my first steps.
+Head over to Route53.  Register a domain name.  Get an email.  Click the confirmation link.  Wait.  The AWS Invoice will show up in your email before the registration is complete.  This took about 20 minutes.  When you are used to everything in life being so quick, the process of getting a new domain seems to take forever (or about 20 minutes).  I should have made the domain registrations one of my first steps.
 
 This is the first time I've registered a new domain in about four years.  I forgot how long it can take.
 
-Once the registration completes go back to the Route53 dashboard and create a new Hosted Zone for your new domain name.  This should take only a few seconds.  Don't worry about adding any records.
+Once the registration completes go back to the Route53 dashboard and check to make sure there is a new Hosted Zone created for the domain.  Check the records.  Specifically, compare the NS records in the Hosted Zone with the Name Servers listed in the Registered Domain.  They should be the same. 
 
 Head back over to the Amplify console.  In my case, I had a checklist of things in Amplify.  Step two (after the site roll out) was to setup the domain name and SSL.  I just clicked through and chose the domain that I had just added.  This kicks off another process by which AWS will generate the Route53 records in your new Hosted Zone.
 
 You can then wait again.
 
-I think this time you are waiting for global DNS propagation of a new domain name.  You might want to just pause here and go do something else.  Or come back the next day.
+Mine made it through the SSL Creation and made it past the domain ownership check and told me that they were waiting on verification of ownership.  And that it could take up to eight hours.
 
-I setup a short loop in my terminal to do an nslookup on my new domain name and put it in a transparent window on a side monitor so I could keep an eye out for its completion.
+I thought it would be another email asking me to verify the ownership.  But eventually it just went through.  So I don't really know what the wait was for.
 
 # Conclusion
 
