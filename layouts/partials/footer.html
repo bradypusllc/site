@@ -11,7 +11,7 @@
             </li>
             {{ end }}
           </ul>
-          <p class="copyright-text">{{ site.Params.copyright | markdownify }}</p>
+          <!--<p class="copyright-text">{{ site.Params.copyright | markdownify }}</p>-->
         </div>
       </div>
     </div>
@@ -20,7 +20,7 @@
 
 
 <!-- Snipcart public key -->
-{{with site.Params.snipcart_api}}<div hidden id="snipcart" data-api-key="{{.}}"></div>{{end}}
+<!--{{with site.Params.snipcart_api}}<div hidden id="snipcart" data-api-key="{{.}}"></div>{{end}}-->
 
 <!-- JS Plugins -->
 {{ range site.Params.plugins.js}}
