@@ -84,13 +84,21 @@
           desc  : desc
         };
 
+        //$.ajax({
+        // type: "POST",
+        // url : "https://o0ej1wdbtb.execute-api.us-east-2.amazonaws.com/contact-us",
+        // dataType: "json",
+        // crossDomain: "true",
+        // contentType: "application/json; charset=utf-8",
+        // data: JSON.stringify(data),
+
        $.ajax({
          type: "POST",
          url : "https://o0ej1wdbtb.execute-api.us-east-2.amazonaws.com/contact-us",
          dataType: "json",
          crossDomain: "true",
          contentType: "application/json; charset=utf-8",
-         data: JSON.stringify(data),
+         data: data,
          
          success: function () {
            // clear form and show a success message
