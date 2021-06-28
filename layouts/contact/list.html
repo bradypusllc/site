@@ -42,12 +42,66 @@
             <textarea name="message" id="message" class="form-control mb-2" placeholder="Your Message"></textarea>
           </div>
           <div class="col-12 text-right">
-            <button type="submit" value="send" class="btn btn-main btn-main-sm">Send</button>
+            <button type="button" onClick="submitToAPI(event)" class="btn btn-main btn-main-sm">Send</button>
           </div>
         </form>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  function submitToAPI(e) {
+       e.preventDefault();
+       var URL = "https://o0ej1wdbtb.execute-api.us-east-2.amazonaws.com/contact-us";
+
+            var Namere = /[A-Za-z]{1}[A-Za-z]/;
+
+            if (!Namere.test($("#name").val())) {
+                         alert ("Name can not less than 2 char");
+                return;
+            }
+
+            if ($("#email").val()=="") {
+                alert ("Please enter your email id");
+                return;
+            }
+
+            var reeamil = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,6})?$/;
+
+            if (!reeamil.test($("#email").val())) {
+                alert ("Please enter valid email address");
+                return;
+            }
+
+       var name = $("#name").val();
+       var email = $("#email").val();
+       var desc = $("#message").val();
+       var data = {
+          name : name,
+          email : email,
+          desc : desc
+        };
+
+       $.ajax({
+         type: "POST",
+         url : "https://o0ej1wdbtb.execute-api.us-east-2.amazonaws.com/contact-us",
+         dataType: "json",
+         crossDomain: "true",
+         contentType: "application/json; charset=utf-8",
+         data: JSON.stringify(data),
+         
+         success: function () {
+           // clear form and show a success message
+           alert("Successfull");
+           document.getElementById("contact-form").reset();
+       location.reload();
+         },
+         error: function () {
+           // show an error message
+           alert("UnSuccessfull");
+         }});
+     }
+</script>
 
 {{ end }}

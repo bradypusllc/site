@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bradypus LLC</title>
+    <link>https://www.bradypusllc.com/</link>
+    <description>Recent content on Bradypus LLC</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Designed By [Themefisher](https://themefisher.com/) &amp; Developed By [Gethugothemes](https://gethugothemes.com/)</copyright>
+    <lastBuildDate>Sun, 02 May 2021 20:37:30 -0400</lastBuildDate><atom:link href="https://www.bradypusllc.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building This Site</title>
+      <link>https://www.bradypusllc.com/blog/building-this-site/</link>
+      <pubDate>Sun, 02 May 2021 20:37:30 -0400</pubDate>
+      
+      <guid>https://www.bradypusllc.com/blog/building-this-site/</guid>
+      <description>Overview This blog posts serves as a welcome and a write up on the decisions and experience of setting up this site.
+As you may have read on the main site, we at Bradypus take pleasure in taking the path of least resistance when it comes to technology success. The setup of this site is no different. This post details the decisions made when creating this site and how I got it all up and running.</description>
+    </item>
+    
+  </channel>
+</rss>
